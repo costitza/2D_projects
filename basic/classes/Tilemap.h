@@ -12,9 +12,7 @@ private:
     float tileSize;
 
 public:
-    Tilemap(float size){
-        tileSize = size;
-    }
+    Tilemap(float size);
 
     void loadMap(const std::vector<std::vector<int>>& mapData);
     void draw(sf::RenderWindow& window);

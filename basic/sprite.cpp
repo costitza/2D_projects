@@ -1,13 +1,24 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include "classes/Player.h"
-
+#include "classes/Tilemap.h"
 
 int main() {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Sprite Example");
     window.setFramerateLimit(60);
 
+
+    std::vector<std::vector<int>> level = {
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // <Walkable
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // <Walkable
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // Platforms
+        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
+    };
+
     Player player(400.f, 300.f);
+    Tilemap map(128.f);
+    map.loadMap(level);
     sf::Clock clock;
 
 
@@ -40,6 +51,7 @@ int main() {
         window.clear(sf::Color::Black);
         window.draw(hitboxDebug);
         player.draw(window);
+        map.draw(window);
         window.display();
     }
 

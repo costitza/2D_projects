@@ -5,7 +5,7 @@
 Tilemap::Tilemap(float size){
     tileSize = size;
 
-    if (!groundTexture.loadFromFile("rsc/PNG/Platformer/Ground11.png")) {
+    if (!groundTexture.loadFromFile("rsc/PNG/Platformer/Ground_11.png")) {
         std::cerr << "Error loading ground texture!" << std::endl;
     }
 }
@@ -29,8 +29,4 @@ void Tilemap::draw(sf::RenderWindow& window){
     for (const auto& tile : tiles) {
         window.draw(tile);
     }
-}
-
-const std::vector<sf::RectangleShape>& Tilemap::getSolids() const {
-    return tiles;
 }
