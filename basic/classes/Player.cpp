@@ -4,7 +4,7 @@
 Player::Player(float x, float y) {
 
 
-    if(!texture.loadFromFile("../../rsc/character_transformationmotion.png")){
+    if(!texture.loadFromFile("rsc/character_transformationmotion.png")){
         std::cerr << "Error loading player texture!" << std::endl;
     }
 
@@ -14,7 +14,7 @@ Player::Player(float x, float y) {
     int frameH = 280;
 
     frames.push_back(sf::IntRect(80, 20, frameW, frameH));
-    frames.push_back(sf::IntRect(80, 20, frameW, frameH));
+    frames.push_back(sf::IntRect(80, 40 + frameH, frameW, frameH));
 
     currentFrameIndex = 0;
     sprite.setTextureRect(frames[currentFrameIndex]);
@@ -42,6 +42,7 @@ void Player::update(float deltaTime){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         sprite.move(-speed * deltaTime, 0);
         isMoving = true;
+
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         sprite.move(speed * deltaTime, 0);
