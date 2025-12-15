@@ -25,6 +25,7 @@ Player::Player(float x, float y) {
     speed = 200.f;
     isMoving = false;
     animationTimer = 0.f;
+    timePerFrame = 0.3f;
 
 }
 
