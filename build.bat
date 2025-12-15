@@ -1,20 +1,18 @@
 @echo off
 
-if "%1"=="" (
-    echo Usage: build *.cpp
+:: Check if at least one argument was given
+if "%~1"=="" (
+    echo Usage: build [files.cpp...] -o [output_name.exe]
+    echo Example: build classes/main.cpp classes/Player.cpp -o main.exe
     exit /b
 )
 
-if "%2"=="" (
-    echo Specify the where you intend to build
-    exit /b
-)
-
-g++ %1 ^
+:: %* passes ALL arguments you typed (file names, flags, etc.)
+:: We append the SFML includes and libraries at the end.
+g++ %* ^
 -ID:/sfml/SFML-2.6.1/include ^
 -LD:/sfml/SFML-2.6.1/lib ^
--lsfml-graphics -lsfml-window -lsfml-system ^
--o %2
+-lsfml-graphics -lsfml-window -lsfml-system
 
 if %errorlevel%==0 (
     echo Build successful!
