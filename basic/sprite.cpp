@@ -1,20 +1,24 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include "Player.h"
+
 
 int main() {
-    sf::RenderWindow window(sf::VideoMode(800, 600), "Sprites!");
+    sf::RenderWindow window(sf::VideoMode(800, 600), "Sprite Example");
+    window.setFramerateLimit(60);
 
-    int frameW = 160;
-    int frameH = 320;
+    Player player(400.f, 300.f);
+    sf::Clock clock;
 
-    sf::Texture texture;
 
-    texture.loadFromFile("rsc/character_transformationmotion.png");
-    sf::IntRect frameRect(80, 0, frameW + 80, frameH);
-    sf::Sprite player(texture, frameRect);
-    player.setPosition(200, 200);
+    sf::RectangleShape hitboxDebug;
+    hitboxDebug.setFillColor(sf::Color::Transparent);
+    hitboxDebug.setOutlineColor(sf::Color::Red);
+    hitboxDebug.setOutlineThickness(1.f);
 
-    std::cout << texture.getSize().x << "x" << texture.getSize().y << std::endl;
+
+
+    // std::cout << texture.getSize().x << "x" << texture.getSize().y << std::endl;
 
 
     while (window.isOpen()) {
@@ -24,11 +28,18 @@ int main() {
                 window.close();
         }
 
+        float deltaTime = clock.restart().asSeconds();
+        player.update(deltaTime);
 
+
+        sf::FloatRect playerBounds = player.getGlobalBounds();
+        hitboxDebug.setSize(sf::Vector2f(playerBounds.width, playerBounds.height));
+        hitboxDebug.setPosition(playerBounds.left, playerBounds.top);
 
 
         window.clear(sf::Color::Black);
-        window.draw(player);
+        window.draw(hitboxDebug);
+        player.draw(window);
         window.display();
     }
 
