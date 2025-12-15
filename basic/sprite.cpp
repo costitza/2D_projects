@@ -9,14 +9,14 @@ int main() {
 
 
     std::vector<std::vector<int>> level = {
-        {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+        {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1},
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // <Walkable
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // <Walkable
         {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1}, // Platforms
         {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1}
     };
 
-    Player player(400.f, 300.f);
+    Player player(400.f, 100.f);
     Tilemap map(128.f);
     map.loadMap(level);
     sf::Clock clock;
@@ -40,7 +40,7 @@ int main() {
         }
 
         float deltaTime = clock.restart().asSeconds();
-        player.update(deltaTime);
+        player.update(deltaTime, map.getSolids());
 
 
         sf::FloatRect playerBounds = player.getGlobalBounds();

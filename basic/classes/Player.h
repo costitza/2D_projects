@@ -12,14 +12,18 @@ private:
     int currentFrameIndex;
 
     float speed;
-    bool isMoving;
     float animationTimer;
     float timePerFrame;
+    float gravity;
+    sf::Vector2f velocity;
+    bool isOnGround;
+    float jumpStrength;
+    void handleCollisions(const std::vector<sf::RectangleShape>& solids);
 
 public:
     Player(float x, float y);
 
-    void update(float deltaTime);
+    void update(float deltaTime, std::vector<sf::RectangleShape> solids);
     void draw(sf::RenderWindow& window);
     sf::FloatRect getGlobalBounds();
 
