@@ -43,11 +43,13 @@ void Player::update(float deltaTime){
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
         sprite.move(-speed * deltaTime, 0);
         isMoving = true;
+        sprite.setScale(-1.f, 1.f);
 
     }
     if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
         sprite.move(speed * deltaTime, 0);
         isMoving = true;
+        sprite.setScale(1.f, 1.f);
     }
 
     if (isMoving) {
